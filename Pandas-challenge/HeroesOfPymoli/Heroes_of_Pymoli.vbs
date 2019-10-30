@@ -49,6 +49,18 @@ summary_table
 
 'GENDER DEMOGRAPHICS
 
+'Create a file with unique players values
+unique_df = pd.DataFrame(df.drop_duplicates(["SN"]))
+
+'Group by Gender
+gender_grouped_df = unique_df.groupby(["Gender"])
+
+'Create a DataFrame with unique player values and grouped by gender
+unique_df = pd.DataFrame({
+            "Total Count":gender_grouped_df["Gender"].count(),
+            "Percentage of players":gender_grouped_df["Gender"].count()/players_count*100})
+
+
 'Group the DataFramed values by Gender
 gender_purchase = pd.DataFrame(df).groupby(["Gender"])
 
